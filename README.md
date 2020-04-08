@@ -1,2 +1,2 @@
 # chattify
-Web Socket Chat server and client 
+web socket chat server and client
