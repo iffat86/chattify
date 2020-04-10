@@ -1,50 +1,116 @@
-<!-- chat/templates/chat/room.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Chat Room</title>
+    <title>CHATTIFY</title>
+     
+    <!------------------------------------------CSS LIBRARIES------------------------------------------>
+    <!--custom sheet-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!--jquery.com library-->
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+    <!--jquery validation library-->
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+
+
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
-    <script>
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/chat/'
-            + roomName
-            + '/'
-        );
-
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
-        };
-
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
-        };
-
-        document.querySelector('#chat-message-input').focus();
-        document.querySelector('#chat-message-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#chat-message-submit').click();
-            }
-        };
-
-        document.querySelector('#chat-message-submit').onclick = function(e) {
-            const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            messageInputDom.value = '';
-        };
-    </script>
+    <section>
+        <div class="container-chat">
+            <div class="msg-header">
+                <div class="msg-header-img">
+                    <img src="{% static '/images/user.jpg' %}" alt="user">
+                </div>
+                <div class="active">
+                    <h4>John Lewis</h4>
+                    <h6>3 hours ago...</h6>
+                </div>
+                <div class="header-icons">
+                    <i class="fa fa-phone"></i>
+                    <i class="fa fa-video-camera"></i>
+                    <i class="fa fa-info-circle"></i>
+                </div>
+            </div>
+             <div class="chat-page">
+                 <div class="msg-inbox">
+                     <div class="chats">
+                         <div class="msg-page">
+                            
+                            <div class="received-chats">
+                              <div class="received-chats-img">
+                               <img src="{% static '/images/user.jpg' %}" alt="user">
+                              </div>
+                              <div class="received-msg">
+                               <div class="received-msg-inbox">
+                                <p>Hi !! This is message from John Levis</p>
+                                <span class="time">11:01 PM | March 30</span>
+                               </div>
+                             </div>
+                            </div>
+                            <div class="outgoing-chats">
+                               <div class="outgoing-msg">
+                                 <div class="outgoing-chats-msg">
+                                  <p>Hi !! This is message from me</p>
+                                  <span class="time">11:05 PM | March 30</span>
+                                 </div>
+                                </div>
+                                <div class="outgoing-chats-img">
+                                    <img src="{% static '/images/user1.jpg' %}" alt="user">
+                                </div>
+                            </div>
+                            <div class="received-chats">
+                                <div class="received-chats-img">
+                                   <img src="{% static '/images/user.jpg' %}" alt="user">
+                                </div>
+                                <div class="received-msg">
+                                    <div class="received-msg-inbox">
+                                      <p>Hi !! This is  2nd message from John Levis</p>
+                                      <span class="time">11:15 PM | March 30</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="outgoing-chats">
+                                <div class="outgoing-msg">
+                                    <div class="outgoing-chats-msg">
+                                        <p>Stay tuned for more updates!!!</p>
+                                        <span class="time">11:25 PM | March 30</span>
+                                    </div>
+                                </div>
+                                <div class="outgoing-chats-img">
+                                    <img src="{% static '/images/user1.jpg' %}" alt="user">
+                                </div>
+                            </div>
+                            <div class="chat-log-box">
+                               <textarea id="chat-log" cols="50" rows="20"></textarea><br>
+                            </div>         
+                         </div>
+                     </div>
+                 </div>
+            <!--</div>-->
+                <div class="msg-bottom">
+                   <div class="bottom-icons">
+                       <i class="fa fa-plus-circle"></i>
+                       <i class="fa fa-camera"></i>
+                       <i class="fa fa-microphone"></i>
+                       <i class="fa fa-smile-o"></i>                       
+                   </div>
+                    <div class="input-group">
+                     <input type="text" class="form-control" placeholder="write your message....">
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                         <i class="fa fa-paper-plane"></i></span>
+                      </div> 
+                    </div>
+                </div>
+        </div>
+        </div>
+     </section>
+     {{ room_name|json_script:"room-name" }}
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
