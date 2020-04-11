@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CHATTIFY</title>
+    <meta name="description" content=" Enjoy chatting with your friends.">
+    <meta name="keywords" content="chat,fun,chattify,online chatting,learn through chats.">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!------------------------------------------CSS LIBRARIES------------------------------------------>
+
+    <!--custom sheet-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!--------------------------javascript libraries------------------------->
+
+    <!--jquery.com library-->
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+    <!--jquery validation library-->
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="wrapper">
+            <section class="sec1 sec">
+                <div class="container">
+                    <span>
+                        <img class='main_logo' src="{% static 'images/logo.png' %}" alt='logo'>
+                    </span>
+                </div>
+            </section>
+
+            <section class="sec2 sec">
+                <div class="container">
+                    <div class="sec2wrapper">
+                        <h1>Chattify</h1>
+                        <h2>Welcome to Chattify</h2>
+                            <div class="log-in">
+                                <a href="login" class="login-btn">LOGIN</a>
+                            </div>
+                            <div class="signup">
+                            <span>New to Chattify ?</span>
+                            <a href="signup" class="form2">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
